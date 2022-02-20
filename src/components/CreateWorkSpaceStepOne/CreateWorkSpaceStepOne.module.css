@@ -1,0 +1,5 @@
+.inputRadioBtns{
+    display: flex;
+    width: 35%;
+    min-height: 14rem;
+}
