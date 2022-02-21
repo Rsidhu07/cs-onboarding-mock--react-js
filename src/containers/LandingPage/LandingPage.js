@@ -10,6 +10,7 @@ const ONE = 1;
 const TWO = 2;
 const THREE = 3;
 const FOUR = 4;
+const FIXED_ARRAY = [1,2,3,4];
 
 const checkIsSelected = formData => {
   if (!formData || !Object.keys(formData).length) return false;
@@ -44,6 +45,10 @@ const LandingPage = () => {
     updatedFormElement.value = e.target.value;
     updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation);
     updatedFormElement.touched = true;
+    if(e.target.checked){
+      updatedFormElement.checked = e.target.checked;
+      formData[updatedFormElement.siblingId].checked = false;
+    }
 
     let formIsValid = true;
 
@@ -75,7 +80,7 @@ const LandingPage = () => {
 
   let content = '', disabled = false, headingOne = '', headingTwo = '';
 
-
+  const displayName = formValuesStepOne.formData.displayName.value || '';
   switch (step) {
     case ONE:
       headingOne = 'Welcome! First things first...';
@@ -112,14 +117,16 @@ const LandingPage = () => {
         headingTwo={headingTwo}
         inputClass ={css.inputRadio}
         labelClass = {css.inputRadioLabel}
+        activeClass = {css.radioActive}
         isRadio={true}
+        
       />);
       const isSelected = checkIsSelected(formValuesStepThree.formData);
       disabled = isSelected;
       break;
 
     case FOUR:
-      headingOne = 'Congratulations, Eren(dynamic)!';
+      headingOne = `Congratulations, ${displayName}!`;
       headingTwo = 'You have completed onboarding, you can start using the Eden!';
       content = (<CreateWorkSpaceStepCompleted
         headingOne={headingOne}
@@ -133,7 +140,6 @@ const LandingPage = () => {
     if (progressRef && progressRef.current) {
       const progressWidth = (((((step + 1) - 1) / 3) * 100) + "%");
       progressRef.current.style.width = progressWidth;
-      console.log('progressWidth****', { progressWidth, pref: progressRef.current });
     }
   };
 
@@ -143,23 +149,19 @@ const LandingPage = () => {
     <div className={css.progressContainer}>
       <div className={css.progressbar}>
         <div className={css.progress} id="progress" ref={progressRef}></div>
-        <div
-          className={step >= 1 ? progressStepActiveClasses : progressStepClass}
-        ></div>
-        <div className={step >= 2 ? progressStepActiveClasses : progressStepClass} ></div>
-        <div className={step >= 3 ? progressStepActiveClasses : progressStepClass} ></div>
-        <div className={step >= 4 ? progressStepActiveClasses : progressStepClass} ></div>
+        {FIXED_ARRAY.map(el=>(
+          <div key={el} className={step >= el ? progressStepActiveClasses : progressStepClass} ></div>
+        ))}
       </div>
     </div>
   );
-    console.log('step 3**', {formValuesStepThree});
   return (
     <div className={css.LandingPage}>
       <Header />
       {progressBar}
       <form className={css.LandingPageForm}>
         {content}
-        <button type='button' disabled={!disabled} onClick={goToNextStep} >{step === FOUR ? 'Launch Eden' : 'Create Workspace'}</button>
+        <button type='button' disabled={step === FOUR? false :!disabled} onClick={goToNextStep} >{step === FOUR ? 'Launch Eden' : 'Create Workspace'}</button>
       </form>
     </div>
   )

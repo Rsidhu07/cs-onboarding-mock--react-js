@@ -10,16 +10,16 @@ const DynamicInput = (props) => {
     inputClasses = css.Invalid + inputClasses;
   }
   switch (props.elementType) {
-    case 'input':{
-      if(props.elementConfig.type === 'text'){
+    case 'input': {
+      if (props.elementConfig.type === 'text') {
         return (
           <input className={inputClasses} type={props.elementConfig.type} name={props.name}
             placeholder={props.elementConfig.placeholder} onChange={props.changed}
           ></input>
         );
-      } else if(props.elementConfig.type === 'radio'){
+      } else if (props.elementConfig.type === 'radio') {
         return (
-          <input className={inputClasses} type={props.elementConfig.type} name={props.elementConfig.name} id ={props.name}
+          <input className={inputClasses} type={props.elementConfig.type} name={props.elementConfig.name} 
             placeholder={props.elementConfig.placeholder} onChange={props.changed}
           ></input>
         );
@@ -32,20 +32,28 @@ const DynamicInput = (props) => {
 }
 
 const Input = (props) => {
-  console.log('props.name**', props.name);
+  const { checked } = props;
 
   return (
-    <Fragment >
-      <label htmlFor={props.name} className={props.labelClass}>
-        {props.isRadio ? 
+    <Fragment>
+      {props.isRadio ?
+        (<label className={checked ? `${props.labelClass} ${css.labelActive}`: props.labelClass}>
           <div className={css.displayBox}>
             <div className={css.labelImg}>image</div>
             <div className={css.contentTitle}>{props.elementConfig.label}</div>
             <div className={css.content}>Write Better. Think more clearly. Stay organized.</div>
           </div>
-        :props.elementConfig.label}
-      </label>
-      <DynamicInput {...props}/>
+          <DynamicInput {...props} />
+        </label>)
+
+
+        : (<Fragment >
+          <label htmlFor={props.name} className={props.labelClass}>
+            {props.elementConfig.label}
+          </label>
+          <DynamicInput {...props} />
+        </Fragment>)
+      }
     </Fragment>
   )
 }

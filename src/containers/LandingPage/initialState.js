@@ -79,6 +79,7 @@ export const initialStateStepTwo = {
 export const initialStateStepThree = {
   formData: {
     individualRadio: {
+      siblingId:'teamRadio',
       elementType: 'input',
       elementConfig: {
         type: 'radio',
@@ -92,9 +93,12 @@ export const initialStateStepThree = {
         maxLength: 50
       },
       valid: true,
-      touched: false
+      touched: false,
+      checked:false
+
     },
     teamRadio: {
+      siblingId:'individualRadio',
       elementType: 'input',
       elementConfig: {
         type: 'radio',
@@ -108,7 +112,8 @@ export const initialStateStepThree = {
         maxLength: 50
       },
       valid: true,
-      touched: false
+      touched: false,
+      checked: false
     },
   },
   isValidForm: false

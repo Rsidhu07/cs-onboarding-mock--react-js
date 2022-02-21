@@ -17,6 +17,10 @@ label {
   min-width: 34.5%;
 }
 
+.labelActive{
+  border: 1px solid #664ce9;
+}
+
 .Invalid {
 border: 1px solid red;
 background-color: #FDA49A;
