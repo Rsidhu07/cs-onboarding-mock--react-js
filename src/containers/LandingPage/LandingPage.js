@@ -136,7 +136,8 @@ const LandingPage = () => {
   };
 
   const goToNextStep = () => {
-    if (step < 4) setStep(pStep => pStep + 1);
+    if(step === 4) return;
+    setStep(pStep => pStep + 1);
     if (progressRef && progressRef.current) {
       const progressWidth = (((((step + 1) - 1) / 3) * 100) + "%");
       progressRef.current.style.width = progressWidth;
