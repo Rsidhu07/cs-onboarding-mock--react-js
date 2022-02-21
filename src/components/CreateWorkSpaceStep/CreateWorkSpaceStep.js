@@ -1,9 +1,9 @@
 import React from 'react';
 import convertFormDataToArray from '../../utils/convertFormDataToArray';
 import Input from '../Input/Input';
-import css from './CreateWorkSpaceStepOne.module.css';
+import css from './CreateWorkSpaceStep.module.css';
 
-const CreateWorkSpaceStepOne = ({ formValues, inputChangeHandler, headingOne, headingTwo, inputClass = '', labelClass = '', isRadio = false }) => {
+const CreateWorkSpaceStep = ({ formValues, inputChangeHandler, headingOne, headingTwo, inputClass = '', labelClass = '', isRadio = false }) => {
 
   const InputEl = 
     convertFormDataToArray(formValues.formData).map(formElement => {
@@ -39,4 +39,4 @@ const CreateWorkSpaceStepOne = ({ formValues, inputChangeHandler, headingOne, he
   )
 };
 
-export default CreateWorkSpaceStepOne;
+export default CreateWorkSpaceStep;

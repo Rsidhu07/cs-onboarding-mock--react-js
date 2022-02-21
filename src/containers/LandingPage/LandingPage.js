@@ -3,8 +3,8 @@ import Header from '../../components/Header/Header';
 import css from './LandingPage.module.css';
 import { initialStateStepOne, initialStateStepTwo, initialStateStepThree } from './initialState';
 import checkValidity from '../../utils/formValidation';
-import CreateWorkSpaceStepOne from '../../components/CreateWorkSpaceStepOne/CreateWorkSpaceStepOne';
-import CreateWorkSpaceStepFour from '../../components/CreateWorkSpaceStepFour/CreateWorkSpaceStepFour';
+import CreateWorkSpaceStep from '../../components/CreateWorkSpaceStep/CreateWorkSpaceStep';
+import CreateWorkSpaceStepCompleted from '../../components/CreateWorkSpaceStepCompleted/CreateWorkSpaceStepCompleted';
 
 const ONE = 1;
 const TWO = 2;
@@ -80,7 +80,7 @@ const LandingPage = () => {
     case ONE:
       headingOne = 'Welcome! First things first...';
       headingTwo = 'You can always change them later.';
-      content = (<CreateWorkSpaceStepOne
+      content = (<CreateWorkSpaceStep
         formValues={formValuesStepOne}
         inputChangeHandler={inputChangeHandler}
         headingOne={headingOne}
@@ -93,7 +93,7 @@ const LandingPage = () => {
     case TWO:
       headingOne = 'Let\'s setup a home for all your work';
       headingTwo = 'You can always create another workspace later.';
-      content = (<CreateWorkSpaceStepOne
+      content = (<CreateWorkSpaceStep
         formValues={formValuesStepTwo}
         inputChangeHandler={inputChangeHandler}
         headingOne={headingOne}
@@ -105,7 +105,7 @@ const LandingPage = () => {
     case THREE:
       headingOne = 'How are you planning to use Eden?';
       headingTwo = 'We\'ll streamline your setup experience accordingly.';
-      content = (<CreateWorkSpaceStepOne
+      content = (<CreateWorkSpaceStep
         formValues={formValuesStepThree}
         inputChangeHandler={inputChangeHandler}
         headingOne={headingOne}
@@ -121,7 +121,7 @@ const LandingPage = () => {
     case FOUR:
       headingOne = 'Congratulations, Eren(dynamic)!';
       headingTwo = 'You have completed onboarding, you can start using the Eden!';
-      content = (<CreateWorkSpaceStepFour
+      content = (<CreateWorkSpaceStepCompleted
         headingOne={headingOne}
         headingTwo={headingTwo}
       />);
